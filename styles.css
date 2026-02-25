@@ -1,0 +1,774 @@
+/* 
+===============================================
+RAK Tech Core Styles
+Right To Dream Aesthetic Layout
+=============================================== 
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --bg-main: #ffffff;
+    --bg-secondary: #f4f4f4;
+    --bg-deep: #000000;
+
+    /* Using RAK branding but with strict solid flat colors */
+    --accent: #2C4B7E;
+    --accent-secondary: #6BA2D4;
+
+    --text-main: #111111;
+    --text-muted: #555555;
+    --text-light: #ffffff;
+
+    --font-heading: 'Teko', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography (RTD Style - Massive, Uppercase, Bold) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 0.9;
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+    letter-spacing: 1px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 4rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.accent {
+    color: var(--accent);
+}
+
+.accent-gradient {
+    color: var(--accent);
+}
+
+.lead-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-main);
+    line-height: 1.4;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Base Layout */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.container-sm {
+    max-width: 1000px;
+}
+
+section {
+    padding: 8rem 0;
+    position: relative;
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.section-title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.section-header {
+    text-align: center;
+    margin: 0 auto 5rem;
+}
+
+/* Brutalist Buttons */
+.btn-primary,
+.btn-primary-sm,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0;
+    /* NO rounded corners */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.btn-primary {
+    background: var(--text-main);
+    color: var(--text-light);
+    padding: 1.2rem 3rem;
+    border: 2px solid var(--text-main);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--text-main);
+}
+
+.btn-primary-sm {
+    background: var(--accent);
+    color: var(--text-light);
+    padding: 0.8rem 2rem;
+    border: 2px solid var(--accent);
+    font-size: 1.2rem;
+}
+
+.btn-primary-sm:hover {
+    background: var(--text-main);
+    border-color: var(--text-main);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--text-main);
+    padding: 1.2rem 3rem;
+}
+
+.btn-secondary:hover {
+    background: var(--text-main);
+    color: var(--text-light);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.navbar.scrolled {
+    background: var(--bg-main);
+    padding: 0.5rem 0;
+    border-bottom: 2px solid var(--text-main);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-img {
+    height: 120px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-img-footer {
+    height: 130px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-links li a {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: var(--accent);
+}
+
+/* Hero Section (RTD Bold Block Style) */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url('assets/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    /* Solid white wash overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 8rem;
+    width: 100%;
+}
+
+.hero-text-container {
+    max-width: 900px;
+}
+
+.tagline {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: inline-block;
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.5rem;
+}
+
+.hero-title {
+    font-size: clamp(4rem, 8vw, 8rem);
+    color: var(--text-main);
+    line-height: 0.85;
+    margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    margin-bottom: 4rem;
+    max-width: 600px;
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* General Card Removals for brutalism */
+.glass-card {
+    background: var(--bg-secondary);
+    border: none;
+    border-radius: 0;
+    padding: 3rem;
+    transition: transform 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+}
+
+/* About Grid */
+.about {
+    background-color: var(--bg-main);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    /* RTD thin border grid effect */
+    background: #e2e8f0;
+    border: 2px solid #e2e8f0;
+}
+
+.about-card {
+    background: var(--bg-main);
+    padding: 4rem 3rem;
+    text-align: center;
+}
+
+.about-card:hover {
+    transform: none;
+    background: var(--bg-secondary);
+}
+
+.icon-wrapper {
+    margin: 0 auto 2rem;
+    color: var(--accent);
+}
+
+.icon-wrapper svg {
+    width: 48px;
+    height: 48px;
+}
+
+.about-card h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Vision Block (Massive Text) */
+.vision-wrapper {
+    text-align: left;
+    padding: 8rem 0 4rem;
+    border-top: 4px solid var(--text-main);
+    margin-top: 6rem;
+}
+
+.vision-wrapper h3 {
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.vision-wrapper .lead-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-main);
+    letter-spacing: -1px;
+    max-width: 100%;
+}
+
+/* Products Section (Split Layout like RTD Featurettes) */
+.products {
+    background-color: var(--text-main);
+    color: var(--text-light);
+    padding: 0;
+}
+
+.products .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.products .section-header {
+    padding-top: 8rem;
+    margin-bottom: 2rem;
+}
+
+.products .section-title {
+    color: var(--text-light);
+}
+
+.features-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.feature-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-item.reverse {
+    direction: rtl;
+}
+
+.feature-item.reverse>* {
+    direction: ltr;
+}
+
+.feature-text {
+    padding: 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feature-text h3 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.feature-text p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.feature-graphic {
+    background: var(--accent);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.graphic-accent-1 {
+    background-color: var(--accent);
+}
+
+.graphic-accent-2 {
+    background-color: var(--text-main);
+    position: relative;
+    overflow: hidden;
+}
+
+.graphic-accent-2::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('assets/hero-bg.png') center/cover;
+    opacity: 0.2;
+}
+
+.graphic-accent-3 {
+    background-color: var(--accent-secondary);
+}
+
+/* Advantage Section - Bold Typo Blocks */
+.advantage {
+    background-color: var(--bg-main);
+}
+
+.advantage-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 4px solid var(--text-main);
+    border-bottom: 4px solid var(--text-main);
+    margin-top: 4rem;
+}
+
+.stat-box {
+    padding: 4rem 2rem;
+    text-align: center;
+    border-right: 1px solid var(--text-main);
+}
+
+.stat-box:last-child {
+    border-right: none;
+}
+
+.stat-number {
+    display: block;
+    font-size: 6rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Clients Grid (RTD Massive Edge-to-Edge Grid) */
+.clients {
+    background-color: var(--bg-secondary);
+    padding: 0;
+}
+
+.clients .container {
+    max-width: 100%;
+    padding: 0;
+}
+
+.clients .section-header {
+    padding: 8rem 4rem 4rem;
+    margin-bottom: 0;
+    text-align: left;
+    background: var(--bg-main);
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+.client-card {
+    aspect-ratio: 3/4;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+.client-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.9;
+}
+
+.client-card:hover .client-img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.client-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
+}
+
+/* Partners */
+.partners {
+    background-color: var(--bg-main);
+    border-top: 10px solid var(--text-main);
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.partner-card {
+    text-align: center;
+}
+
+.partner-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.partner-img-wrapper {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.partner-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partner-card:hover .partner-img {
+    filter: grayscale(0%);
+}
+
+/* Footer (Brutalist Black Block) */
+.footer {
+    background-color: var(--text-main);
+    color: var(--text-light);
+    padding: 8rem 0 4rem;
+}
+
+.footer h4 {
+    color: var(--text-light);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.footer-desc {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    max-width: 400px;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+}
+
+.input-field {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-light);
+    padding: 1rem 0;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-field:focus {
+    border-bottom-color: var(--accent);
+}
+
+.badge {
+    background: var(--text-light);
+    color: var(--text-main);
+    padding: 0.5rem 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.footer-bottom {
+    text-align: left;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+/* Animations Data */
+.slide-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-right {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-left {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in {
+    opacity: 0;
+    transition: 1s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .feature-item {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-text {
+        padding: 4rem 2rem;
+    }
+
+    .feature-graphic {
+        min-height: 300px;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .advantage-stats {
+        grid-template-columns: 1fr;
+        border: none;
+        gap: 2rem;
+        border-top: 4px solid var(--text-main);
+        padding-top: 2rem;
+    }
+
+    .stat-box {
+        border-right: none;
+        border-bottom: 1px solid var(--text-main);
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+    }
+
+    .vision-wrapper .lead-text {
+        font-size: 1.8rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .clients-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+}

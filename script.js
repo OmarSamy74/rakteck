@@ -4,13 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
+    });
+
+    // 2. Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    const overlay = document.getElementById('mobile-overlay');
+
+    function closeMenu() {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.contains('open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            hamburger.classList.add('open');
+            navLinks.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
 
     // 2. Intersection Observer for Scroll Animations
@@ -32,24 +63,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     const animatedElements = document.querySelectorAll('.slide-up, .slide-right, .slide-left, .fade-in');
-    
+
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 
     // 3. Smooth Scrolling for internal anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
+            if (targetId === '#') return;
+
             const targetElement = document.querySelector(targetId);
-            if(targetElement) {
+            if (targetElement) {
                 const navHeight = navbar.offsetHeight;
                 const elementPosition = targetElement.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - navHeight;
-  
+
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: "smooth"
@@ -62,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         animatedElements.forEach(el => {
             const rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight && rect.bottom >= 0) {
+            if (rect.top < window.innerHeight && rect.bottom >= 0) {
                 el.classList.add('visible');
             }
         });

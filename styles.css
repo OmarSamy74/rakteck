@@ -164,9 +164,10 @@ section {
 .btn-primary-sm {
     background: var(--accent);
     color: var(--text-light);
-    padding: 0.8rem 2rem;
+    padding: 0.55rem 1.6rem;
     border: 2px solid var(--accent);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
 .btn-primary-sm:hover {
@@ -231,9 +232,12 @@ section {
     color: var(--text-main);
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     transition: color 0.3s;
+    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links li a:hover {
@@ -285,9 +289,9 @@ section {
 }
 
 .hero-title {
-    font-size: clamp(4rem, 8vw, 8rem);
+    font-size: clamp(3rem, 6vw, 6.5rem);
     color: var(--text-main);
-    line-height: 0.85;
+    line-height: 0.9;
     margin-bottom: 2rem;
 }
 
@@ -441,10 +445,12 @@ section {
 
 .feature-graphic {
     background: var(--accent);
-    min-height: 500px;
+    min-height: 450px;
+    max-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .graphic-accent-1 {
@@ -472,13 +478,16 @@ section {
 .product-photo-wrapper {
     padding: 0;
     overflow: hidden;
+    min-height: 450px;
+    max-height: 600px;
 }
 
 .product-photo {
     width: 100%;
     height: 100%;
+    min-height: 450px;
     object-fit: cover;
-    object-position: center;
+    object-position: center top;
     display: block;
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -512,20 +521,21 @@ section {
 
 .stat-number {
     display: block;
-    font-size: 6rem;
+    font-size: 4.5rem;
     font-family: var(--font-heading);
     font-weight: 700;
     color: var(--accent);
     line-height: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .stat-label {
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: var(--text-muted);
 }
 
 /* Clients Grid (RTD Massive Edge-to-Edge Grid) */
@@ -553,19 +563,19 @@ section {
 }
 
 .client-card {
-    aspect-ratio: 3/4;
+    aspect-ratio: 2/3;
     position: relative;
     overflow: hidden;
-    background: #000;
+    background: #111;
 }
 
 .client-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 15%;
     transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
 .client-card:hover .client-img {
@@ -607,17 +617,26 @@ section {
 }
 
 .partner-img-wrapper {
-    height: 100px;
+    height: 120px;
+    background: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1.5rem 2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.partner-card:hover .partner-img-wrapper {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .partner-img {
-    height: 100%;
+    max-height: 70px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(100%);
+    filter: grayscale(80%);
     transition: filter 0.3s ease;
 }
 

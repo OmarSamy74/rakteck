@@ -590,15 +590,17 @@ section {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
 }
 
-/* Video Analysis Team Section — Clean / No Background */
+/* =============================================
+   Video Analysis — Transparent / Overlay Design
+   ============================================= */
 .video-analysis {
-    background-color: var(--bg-main);
+    background: transparent; /* No background */
     overflow: hidden;
-    padding: 8rem 0 12rem;
+    padding: 8rem 0 10rem;
 }
 
 .video-analysis .section-header {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 /* Slider wrapper */
@@ -606,7 +608,7 @@ section {
     position: relative;
 }
 
-/* Nav buttons — pinned to sides */
+/* Nav buttons — floating circles on each side */
 .slider-controls {
     position: absolute;
     top: 50%;
@@ -616,46 +618,49 @@ section {
     display: flex;
     justify-content: space-between;
     pointer-events: none;
-    z-index: 10;
-    padding: 0 1rem;
+    z-index: 20;
+    padding: 0 1.5rem;
 }
 
 .slider-btn {
     pointer-events: all;
-    background: transparent;
+    background: rgba(255,255,255,0.9);
     color: var(--text-main);
-    border: 1.5px solid var(--text-main);
-    width: 52px;
-    height: 52px;
+    border: 1.5px solid rgba(0,0,0,0.12);
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.35s ease;
+    transition: all 0.3s ease;
     flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    backdrop-filter: blur(4px);
 }
 
 .slider-btn svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
 }
 
 .slider-btn:hover {
     background: var(--accent);
     border-color: var(--accent);
     color: #fff;
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 6px 24px rgba(44,75,126,0.35);
 }
 
 /* Track */
 .analysts-slider-track {
     display: flex;
-    gap: 0;
     overflow-x: auto;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    padding: 3rem 10vw;
+    padding: 2rem 8vw;
+    gap: 2rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -664,88 +669,127 @@ section {
     display: none;
 }
 
-/* Each card — NO background, just photo + reveal overlay */
+/* ── Card: transparent, no border ── */
 .analyst-card {
-    flex: 0 0 320px;
+    flex: 0 0 300px;
     scroll-snap-align: center;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    position: relative;
     overflow: hidden;
-    height: auto;
     background: transparent;
     border: none;
-    margin: 0 1.5rem;
     cursor: pointer;
-    position: relative;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 4px;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .analyst-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
 }
 
-/* Photo frame */
+/* ── Photo wrapper ── */
 .analyst-img-wrapper {
     width: 100%;
     aspect-ratio: 3/4;
     overflow: hidden;
     position: relative;
-    background: #000;
+    background: #111;
+    border-radius: 4px;
 }
 
-/* Gradient overlay (always sitting at bottom) */
+/* ── Overlay: hidden by default, full reveal on hover ── */
 .analyst-img-wrapper::after {
     content: '';
     position: absolute;
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(10, 20, 40, 0.95) 0%,
-        rgba(10, 20, 40, 0.3) 50%,
-        transparent 100%
+        rgba(10, 22, 45, 0.97) 0%,
+        rgba(10, 22, 45, 0.65) 55%,
+        rgba(10, 22, 45, 0.1) 100%
     );
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.45s ease;
     z-index: 2;
+    border-radius: 4px;
 }
 
 .analyst-card:hover .analyst-img-wrapper::after {
     opacity: 1;
 }
 
+/* ── Photo ── */
 .analyst-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: grayscale(30%);
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
+    filter: grayscale(20%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s;
 }
 
 .analyst-card:hover .analyst-img {
-    transform: scale(1.08);
+    transform: scale(1.06);
     filter: grayscale(0%);
 }
 
-/* Info — absolute, slides up on hover */
+/* ── Name tab: always visible at bottom ── */
+.analyst-name-tab {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.5rem 1.5rem;
+    z-index: 5;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+    border-radius: 0 0 4px 4px;
+    transition: opacity 0.35s ease;
+}
+
+.analyst-card:hover .analyst-name-tab {
+    opacity: 0; /* Hide tab when full info shows */
+}
+
+.analyst-name-tab h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0 0 0.2rem;
+    line-height: 1;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+.analyst-name-tab span {
+    font-size: 0.7rem;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+/* ── Info panel: hidden below, slides up on hover ── */
 .analyst-info {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem;
-    z-index: 3;
-    transform: translateY(calc(100% - 5rem));
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 2rem 1.8rem;
+    z-index: 6;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.35s ease;
+    pointer-events: none;
 }
 
 .analyst-card:hover .analyst-info {
     transform: translateY(0);
+    opacity: 1;
 }
 
 .analyst-info h3 {
-    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    font-size: 2rem;
     margin-bottom: 0.3rem;
     color: #fff;
     line-height: 1;
@@ -755,31 +799,23 @@ section {
     font-family: var(--font-body);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     letter-spacing: 2px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     color: var(--accent-secondary);
-    opacity: 1;
 }
 
-/* Certs — only visible on hover */
+/* ── Certs ── */
 .analyst-certs {
     list-style: none;
-    margin-top: 0.5rem;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s 0.1s, transform 0.4s 0.1s;
-}
-
-.analyst-card:hover .analyst-certs {
-    opacity: 1;
-    transform: translateY(0);
+    margin: 0;
+    padding: 0;
 }
 
 .analyst-certs li {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.8);
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.45rem;
     padding-left: 1.2rem;
     position: relative;
     line-height: 1.4;
@@ -790,38 +826,6 @@ section {
     position: absolute;
     left: 0;
     color: var(--accent-secondary);
-    font-weight: 700;
-}
-
-/* Name tab — always visible at bottom */
-.analyst-name-tab {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1.5rem 2rem;
-    z-index: 4;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-}
-
-.analyst-card:hover .analyst-name-tab {
-    opacity: 0;
-}
-
-.analyst-name-tab h4 {
-    font-size: 1.4rem;
-    color: #fff;
-    margin: 0;
-    line-height: 1.1;
-}
-
-.analyst-name-tab span {
-    font-size: 0.7rem;
-    color: var(--accent-secondary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
     font-weight: 700;
 }
 

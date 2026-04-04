@@ -119,6 +119,24 @@ document.addEventListener('DOMContentLoaded', () => {
         sliderTrack.addEventListener('scroll', toggleButtons);
         window.addEventListener('resize', toggleButtons);
         toggleButtons();
+
+        // Auto-slide functionality
+        let autoSlideInterval;
+        const startAutoSlide = () => {
+            autoSlideInterval = setInterval(() => {
+                if (sliderTrack.scrollLeft + sliderTrack.clientWidth >= sliderTrack.scrollWidth - 10) {
+                    sliderTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    sliderTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 4000);
+        };
+
+        const stopAutoSlide = () => clearInterval(autoSlideInterval);
+
+        sliderTrack.addEventListener('mouseenter', stopAutoSlide);
+        sliderTrack.addEventListener('mouseleave', startAutoSlide);
+        startAutoSlide();
     }
 
     // Initial check for elements in viewport on load

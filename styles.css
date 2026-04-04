@@ -592,8 +592,16 @@ section {
 
 /* Video Analysis Team Section */
 .video-analysis {
-    background-color: var(--bg-main);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     overflow: hidden;
+    color: var(--text-light); /* Enforce light text context */
+}
+
+/* Ensure headings & text within are light */
+.video-analysis .section-title, 
+.video-analysis .lead-text, 
+.video-analysis .section-subtitle {
+    color: var(--text-light) !important;
 }
 
 .site-slider {
@@ -608,56 +616,62 @@ section {
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     padding: 2rem 0;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
 }
 
 .analysts-slider-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
+}
+
+/* Link Wrapper for Cards */
+.analyst-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex: 0 0 380px;
+    scroll-snap-align: center;
 }
 
 .analyst-card {
-    flex: 0 0 380px;
-    scroll-snap-align: center;
     display: flex;
     flex-direction: column;
     padding: 0;
     overflow: hidden;
     height: 100%;
-    border: 2px solid var(--text-main);
-    background: var(--bg-main);
+    border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    background: rgba(255, 255, 255, 0.03); /* Glass effect */
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.slider-controls {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    margin-bottom: 1rem;
+.analyst-card:hover {
+    border-color: var(--accent-secondary);
+    background: rgba(255, 255, 255, 0.08); /* Glow on hover */
+    transform: translateY(-10px);
 }
 
 .slider-btn {
-    background: var(--text-main);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-light);
-    border: none;
-    width: 50px;
-    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .slider-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
 }
 
 .slider-btn:hover {
     background: var(--accent);
-}
-
-.analyst-card:hover {
     border-color: var(--accent);
 }
 

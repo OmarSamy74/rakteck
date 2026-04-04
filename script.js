@@ -96,24 +96,32 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextBtn = document.getElementById(nextId);
 
         if (sliderTrack && prevBtn && nextBtn) {
-            console.log(`Initializing slider for: ${trackId}`);
-            
             const handleScroll = (direction) => {
+                // Target all children with .analyst-card class
                 const cards = sliderTrack.querySelectorAll('.analyst-card');
                 if (cards.length === 0) return;
                 
-                // Get width from first card or fallback to 300
+                // Get width and gap
                 const cardWidth = cards[0].offsetWidth || 300;
-                // Get gap from computed style or fallback to 32
                 const style = window.getComputedStyle(sliderTrack);
                 const gap = parseInt(style.gap) || 32;
                 
-                const scrollAmount = (cardWidth + gap) * direction;
-                sliderTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                // Use scrollTo for more reliable smooth scrolling
+                sliderTrack.scrollTo({
+                    left: sliderTrack.scrollLeft + ((cardWidth + gap) * direction),
+                    behavior: 'smooth'
+                });
             };
 
-            nextBtn.addEventListener('click', () => handleScroll(1));
-            prevBtn.addEventListener('click', () => handleScroll(-1));
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleScroll(1);
+            });
+            
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleScroll(-1);
+            });
         }
     }
 

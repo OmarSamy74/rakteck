@@ -89,22 +89,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Analysts Slider Logic
-    const sliderTrack = document.getElementById('analysts-slider');
-    const prevBtn = document.getElementById('prev-analyst');
-    const nextBtn = document.getElementById('next-analyst');
+    // 4. Generic Slider Logic
+    function initSlider(trackId, prevId, nextId) {
+        const sliderTrack = document.getElementById(trackId);
+        const prevBtn = document.getElementById(prevId);
+        const nextBtn = document.getElementById(nextId);
 
-    if (sliderTrack && prevBtn && nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            const cardWidth = sliderTrack.querySelector('.analyst-card').offsetWidth;
-            sliderTrack.scrollBy({ left: cardWidth + 32, behavior: 'smooth' });
-        });
+        if (sliderTrack && prevBtn && nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                const firstCard = sliderTrack.querySelector('.analyst-card');
+                if (!firstCard) return;
+                const cardWidth = firstCard.offsetWidth;
+                sliderTrack.scrollBy({ left: cardWidth + 32, behavior: 'smooth' });
+            });
 
-        prevBtn.addEventListener('click', () => {
-            const cardWidth = sliderTrack.querySelector('.analyst-card').offsetWidth;
-            sliderTrack.scrollBy({ left: -(cardWidth + 32), behavior: 'smooth' });
-        });
+            prevBtn.addEventListener('click', () => {
+                const firstCard = sliderTrack.querySelector('.analyst-card');
+                if (!firstCard) return;
+                const cardWidth = firstCard.offsetWidth;
+                sliderTrack.scrollBy({ left: -(cardWidth + 32), behavior: 'smooth' });
+            });
+        }
     }
+
+    // Initialize both sliders
+    initSlider('analysts-slider', 'prev-analyst', 'next-analyst');
+    initSlider('players-slider', 'prev-player', 'next-player');
 
     // Initial check for elements in viewport on load
     setTimeout(() => {

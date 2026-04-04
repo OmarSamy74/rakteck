@@ -89,54 +89,107 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Analysts Slider Logic
+    // 4. Centerpiece Analysts Slider Logic
     const sliderTrack = document.getElementById('analysts-slider');
     const prevBtn = document.getElementById('prev-analyst');
     const nextBtn = document.getElementById('next-analyst');
+    const analystItems = document.querySelectorAll('.analyst-item');
+    const detailsPanel = document.getElementById('analyst-details');
+    const displayName = document.getElementById('display-name');
+    const displayRole = document.getElementById('display-role');
+    const displayDesc = document.getElementById('display-desc');
 
-    if (sliderTrack && prevBtn && nextBtn) {
-        const scrollAmount = 412; // card width + gap approx
+    const analystsData = [
+        {
+            name: "Ahmed Gameel Zaid",
+            role: "First Team Video Analyst | Al-Yarmouk FC (KSA)",
+            desc: "FA Certified Scout and Performance Analysis Graduate specializing in technical and tactical coding for professional clubs."
+        },
+        {
+            name: "Abdelkader Saleh",
+            role: "Video Analyst",
+            desc: "Expert in FC Barcelona's Methodology and Johan Cruyff Institute certified analyst, focused on positional play."
+        },
+        {
+            name: "Abdelrhman Fahmy",
+            role: "Performance Analyst First Team",
+            desc: "Dedicated performance analyst with PFSA and tactical certifications, formerly with AL-Masry."
+        },
+        {
+            name: "Karim Ali",
+            role: "Performance Analyst – Laviena FC",
+            desc: "Experienced coach and analyst with deep PFSA expertise in live match and opposition analysis."
+        },
+        {
+            name: "Abdellatif Reda",
+            role: "First Team Performance Analyst | Al Ahly SC Women",
+            desc: "Data-driven tactician with Barcelona Innovation Hub qualifications, specialized in match and video analysis."
+        }
+    ];
 
-        nextBtn.addEventListener('click', () => {
-            sliderTrack.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
+    if (sliderTrack && analystItems.length > 0) {
+        
+        const updateActiveItem = () => {
+            const trackRect = sliderTrack.getBoundingClientRect();
+            const trackCenter = trackRect.left + trackRect.width / 2;
+
+            let closestItem = null;
+            let minDistance = Infinity;
+
+            analystItems.forEach((item, index) => {
+                const itemRect = item.getBoundingClientRect();
+                const itemCenter = itemRect.left + itemRect.width / 2;
+                const distance = Math.abs(trackCenter - itemCenter);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestItem = item;
+                }
             });
+
+            if (closestItem) {
+                const index = parseInt(closestItem.getAttribute('data-index'));
+                
+                // Update Classes
+                analystItems.forEach(item => item.classList.remove('active'));
+                closestItem.classList.add('active');
+
+                // Update Info Panel with simple fade
+                if (displayName.innerText !== analystsData[index].name) {
+                    detailsPanel.style.opacity = '0';
+                    setTimeout(() => {
+                        displayName.innerText = analystsData[index].name;
+                        displayRole.innerText = analystsData[index].role;
+                        displayDesc.innerText = analystsData[index].desc;
+                        detailsPanel.style.opacity = '1';
+                    }, 300);
+                }
+            }
+        };
+
+        // Navigation Buttons
+        nextBtn.addEventListener('click', () => {
+            const itemWidth = analystItems[0].offsetWidth + 64; // base + gap
+            sliderTrack.scrollBy({ left: itemWidth, behavior: 'smooth' });
         });
 
         prevBtn.addEventListener('click', () => {
-            sliderTrack.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
+            const itemWidth = analystItems[0].offsetWidth + 64;
+            sliderTrack.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+        });
+
+        // Click on item to center it
+        analystItems.forEach(item => {
+            item.addEventListener('click', () => {
+                item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             });
         });
 
-        const toggleButtons = () => {
-            prevBtn.style.opacity = sliderTrack.scrollLeft <= 0 ? '0.3' : '1';
-            nextBtn.style.opacity = (sliderTrack.scrollLeft + sliderTrack.clientWidth >= sliderTrack.scrollWidth - 10) ? '0.3' : '1';
-        };
-
-        sliderTrack.addEventListener('scroll', toggleButtons);
-        window.addEventListener('resize', toggleButtons);
-        toggleButtons();
-
-        // Auto-slide functionality
-        let autoSlideInterval;
-        const startAutoSlide = () => {
-            autoSlideInterval = setInterval(() => {
-                if (sliderTrack.scrollLeft + sliderTrack.clientWidth >= sliderTrack.scrollWidth - 10) {
-                    sliderTrack.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    sliderTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                }
-            }, 4000);
-        };
-
-        const stopAutoSlide = () => clearInterval(autoSlideInterval);
-
-        sliderTrack.addEventListener('mouseenter', stopAutoSlide);
-        sliderTrack.addEventListener('mouseleave', startAutoSlide);
-        startAutoSlide();
+        sliderTrack.addEventListener('scroll', updateActiveItem);
+        window.addEventListener('resize', updateActiveItem);
+        
+        // Initial setup
+        updateActiveItem();
     }
 
     // Initial check for elements in viewport on load

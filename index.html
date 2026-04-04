@@ -204,122 +204,66 @@
 
     <!-- Video Analysis Section -->
     <section class="video-analysis" id="video-analysis">
-        <div class="container container-sm text-center slide-up">
-            <p class="section-subtitle">EXPERT ANALYSIS</p>
-            <h2 class="section-title">Our <span class="accent">Video Analysis</span> Team</h2>
-            <p class="mb-3 lead-text">We bring together top-tier football analysts with certifications from global institutes to provide professional-grade tactical insights.</p>
+        <div class="container text-center slide-up">
+            <p class="section-subtitle">Our team</p>
+            <h2 class="section-title">Video Analysis Excellence</h2>
         </div>
         
-        <div class="container site-slider">
-            <div class="slider-controls">
-                <button class="slider-btn prev-btn" id="prev-analyst" aria-label="Previous Analyst">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <div class="site-slider">
+            <div class="analysts-slider-container">
+                <button class="slider-nav prev" id="prev-analyst">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M15 18l-6-6 6-6" />
                     </svg>
                 </button>
-                <button class="slider-btn next-btn" id="next-analyst" aria-label="Next Analyst">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                
+                <div class="analysts-slider-track" id="analysts-slider">
+                    <div class="analyst-item active" data-index="0">
+                        <div class="analyst-photo-wrapper">
+                            <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid" class="analyst-photo">
+                        </div>
+                    </div>
+                    <div class="analyst-item" data-index="1">
+                        <div class="analyst-photo-wrapper">
+                            <img src="assets/analyst2.png" alt="Abdelkader Saleh" class="analyst-photo">
+                        </div>
+                    </div>
+                    <div class="analyst-item" data-index="2">
+                        <div class="analyst-photo-wrapper">
+                            <img src="assets/analyst3.png" alt="Abdelrhman Fahmy" class="analyst-photo">
+                        </div>
+                    </div>
+                    <div class="analyst-item" data-index="3">
+                        <div class="analyst-photo-wrapper">
+                            <img src="assets/analyst4.png" alt="Karim Ali" class="analyst-photo">
+                        </div>
+                    </div>
+                    <div class="analyst-item" data-index="4">
+                        <div class="analyst-photo-wrapper">
+                            <img src="assets/analyst5.png" alt="Abdellatif Reda" class="analyst-photo">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="slider-nav next" id="next-analyst">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M9 18l6-6-6-6" />
                     </svg>
                 </button>
             </div>
-            
-            <div class="analysts-slider-track" id="analysts-slider">
-                <!-- Analyst 1: Ahmed Gameel Zaid -->
-                <a href="analyst-details.html?id=ahmed-gameel" class="analyst-card-link">
-                    <div class="analyst-card glass-card">
-                        <div class="analyst-img-wrapper">
-                            <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid" class="analyst-img">
-                        </div>
-                        <div class="analyst-info">
-                            <h3>Ahmed Gameel Zaid</h3>
-                            <p class="analyst-role">First Team Video Analyst | Al-Yarmouk FC (KSA)</p>
-                            <ul class="analyst-certs">
-                                <li>FA Certified: Introduction to Scouting & Football Coaching</li>
-                                <li>PFSA Certified: Level 1 Talent Identification</li>
-                                <li>Performance Analysis Graduate: Griffin Performance Academy (UAE)</li>
-                                <li>The FA (England) Introduction to Scouting</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
 
-                <!-- Analyst 2: Abdelkader Saleh -->
-                <a href="analyst-details.html?id=abdelkader-saleh" class="analyst-card-link">
-                    <div class="analyst-card glass-card">
-                        <div class="analyst-img-wrapper">
-                            <img src="assets/analyst2.png" alt="Abdelkader Saleh" class="analyst-img">
-                        </div>
-                        <div class="analyst-info">
-                            <h3>Abdelkader Saleh</h3>
-                            <p class="analyst-role">Video Analyst</p>
-                            <ul class="analyst-certs">
-                                <li>Holder of a certification in FC Barcelona’s Methodology – Positional Play Concepts (APF)</li>
-                                <li>Specialized in Game Analysis</li>
-                                <li>Certified in Performance Analysis from the Johan Cruyff Institute</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Analyst 3: Abdelrhman Fahmy -->
-                <a href="analyst-details.html?id=abdelrhman-fahmy" class="analyst-card-link">
-                    <div class="analyst-card glass-card">
-                        <div class="analyst-img-wrapper">
-                            <img src="assets/analyst3.png" alt="Abdelrhman Fahmy" class="analyst-img">
-                        </div>
-                        <div class="analyst-info">
-                            <h3>Abdelrhman Fahmy</h3>
-                            <p class="analyst-role">Former AL-Masry Performance Analyst First Team</p>
-                            <ul class="analyst-certs">
-                                <li>PFSA Performance Analysis Levels 1, 2 & 3</li>
-                                <li>Beltagy Football Analysis Courses (Game analysis, set-piece analysis)</li>
-                                <li>Gary Cureen's Tactical Analysis Certification</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Analyst 4: Karim Ali -->
-                <a href="analyst-details.html?id=karim-ali" class="analyst-card-link">
-                    <div class="analyst-card glass-card">
-                        <div class="analyst-img-wrapper">
-                            <img src="assets/analyst4.png" alt="Karim Ali" class="analyst-img">
-                        </div>
-                        <div class="analyst-info">
-                            <h3>Karim Ali</h3>
-                            <p class="analyst-role">Performance Analyst – Laviena FC</p>
-                            <ul class="analyst-certs">
-                                <li>Performance Analysis – PFSA</li>
-                                <li>Live Match Analysis – PFSA</li>
-                                <li>Opposition Analysis – PFSA</li>
-                                <li>Scouting Courses – PFSA</li>
-                                <li>Assistant Coach & Performance Analyst Laviena FC – Youth Sector (2009)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Analyst 5: Abdellatif Reda -->
-                <a href="analyst-details.html?id=abdellatif-reda" class="analyst-card-link">
-                    <div class="analyst-card glass-card">
-                        <div class="analyst-img-wrapper">
-                            <img src="assets/analyst5.png" alt="Abdellatif Reda" class="analyst-img">
-                        </div>
-                        <div class="analyst-info">
-                            <h3>Abdellatif Reda</h3>
-                            <p class="analyst-role">First Team Performance Analyst | Al Ahly SC Women</p>
-                            <ul class="analyst-certs">
-                                <li>Barcelona Innovation Hub: Professional Diploma in Football Tactical Analysis</li>
-                                <li>PFSA Level 2: Performance Analysis | Opposition Analysis | Technical Scouting</li>
-                                <li>PFSA Certified: Introduction to Football Scouting</li>
-                                <li>IPSO Certified: Level 1 & 2 – Bias in Scouting</li>
-                                <li>Specialized in: Match Analysis, Opposition Analysis, Video Analysis</li>
-                                <li><strong>Approach:</strong> Data-driven insights combined with tactical understanding</li>
-                            </ul>
-                        </div>
-                    </div>
-                </a>
+            <!-- Fixed Info Panel -->
+            <div class="analyst-details-panel" id="analyst-details">
+                <h3 class="details-name">
+                    <span id="display-name">Ahmed Gameel Zaid</span>
+                    <a href="#" class="linkedin-link">
+                        <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </h3>
+                <p class="details-role" id="display-role">First Team Video Analyst | Al-Yarmouk FC (KSA)</p>
+                <p class="details-desc" id="display-desc">Expert video analyst with FA certifications and experience in top-tier KSA football.</p>
             </div>
         </div>
     </section>
@@ -402,11 +346,18 @@
                 </div>
                 <div class="footer-col">
                     <h4>Get In Touch</h4>
-                    <form class="contact-form glass-card"
-                        onsubmit="event.preventDefault(); alert('In a real environment, this would send an email to RAK Tech!');">
-                        <input type="email" placeholder="Your Email Address" required class="input-field" />
-                        <button type="submit" class="btn-primary-sm btn-fullw">Schedule a Discovery Call</button>
-                    </form>
+                    <div class="contact-info">
+                        <div class="contact-group">
+                            <h5 class="contact-person-name">Mr. Amr Elassi</h5>
+                            <p>Phone: <a href="tel:+201060308153">+201060308153</a></p>
+                            <p>Email: <a href="mailto:amrelassy651@gmail.com">amrelassy651@gmail.com</a></p>
+                        </div>
+                        <div class="contact-group mt-1">
+                            <h5 class="contact-person-name">Mr. Abdelrahman Ibrahim</h5>
+                            <p>Phone: <a href="tel:+201065087512">+201065087512</a></p>
+                            <p>Email: <a href="mailto:abdelrahman.i@icloud.com">abdelrahman.i@icloud.com</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">

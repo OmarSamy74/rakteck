@@ -22,10 +22,8 @@
     <meta name="msapplication-TileImage" content="assets/favicon-32.png">
     <!-- Main Styles -->
     <link rel="stylesheet" href="styles.css">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- bxSlider CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <!-- Flickity (For elite physics) -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 
 <body>
@@ -213,94 +211,80 @@
             <h2 class="section-title">Video Analysis Excellence</h2>
         </div>
         
-        <div class="carouselteam-wrap">
-            <div class="container container-slider">
-                <ul class="team-carousel">
-                    <!-- Analyst 1: Ahmed Gameel Zaid -->
-                    <li class="team-each-block">
-                        <a href="analyst-details.html?id=ahmed-gameel" class="team-prof-wrap">
-                            <div class="team-profile">
-                                <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid">
-                            </div>
-                            <div class="team-sub-wrap">
-                                <div class="team-sub-content">
-                                    <h3>Ahmed Gameel Zaid</h3>
-                                    <span>First Team Video Analyst</span>
-                                    <p>FA Certified with experience in Al-Yarmouk FC (KSA).</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="team-tag linkedin-icon" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </li>
-                    
-                    <!-- Analyst 2: Abdelkader Saleh -->
-                    <li class="team-each-block">
-                        <a href="analyst-details.html?id=abdelkader-saleh" class="team-prof-wrap">
-                            <div class="team-profile">
-                                <img src="assets/analyst2.png" alt="Abdelkader Saleh">
-                            </div>
-                            <div class="team-sub-wrap">
-                                <div class="team-sub-content">
-                                    <h3>Abdelkader Saleh</h3>
-                                    <span>Video Analyst</span>
-                                    <p>Expert in FC Barcelona's Methodology and Johan Cruyff Institute certified.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="team-tag linkedin-icon" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </li>
+        <div class="elite-slider-wrapper">
+            <!-- Parallax Background Grid -->
+            <div class="slider-parallax-bg" id="slider-parallax"></div>
+            
+            <div class="analysts-carousel" id="analysts-carousel">
+                <!-- Cell 1 -->
+                <div class="analyst-cell" data-index="0">
+                    <div class="analyst-dossier">
+                        <div class="analyst-photo-frame">
+                            <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid" class="analyst-img">
+                            <div class="photo-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cell 2 -->
+                <div class="analyst-cell" data-index="1">
+                    <div class="analyst-dossier">
+                        <div class="analyst-photo-frame">
+                            <img src="assets/analyst2.png" alt="Abdelkader Saleh" class="analyst-img">
+                            <div class="photo-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cell 3 -->
+                <div class="analyst-cell" data-index="2">
+                    <div class="analyst-dossier">
+                        <div class="analyst-photo-frame">
+                            <img src="assets/analyst3.png" alt="Abdelrhman Fahmy" class="analyst-img">
+                            <div class="photo-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cell 4 -->
+                <div class="analyst-cell" data-index="3">
+                    <div class="analyst-dossier">
+                        <div class="analyst-photo-frame">
+                            <img src="assets/analyst4.png" alt="Karim Ali" class="analyst-img">
+                            <div class="photo-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cell 5 -->
+                <div class="analyst-cell" data-index="4">
+                    <div class="analyst-dossier">
+                        <div class="analyst-photo-frame">
+                            <img src="assets/analyst5.png" alt="Abdellatif Reda" class="analyst-img">
+                            <div class="photo-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                    <!-- Analyst 3: Abdelrhman Fahmy -->
-                    <li class="team-each-block">
-                        <a href="analyst-details.html?id=abdelrhman-fahmy" class="team-prof-wrap">
-                            <div class="team-profile">
-                                <img src="assets/analyst3.png" alt="Abdelrhman Fahmy">
+            <!-- Content Panel (Dynamic) -->
+            <div class="analyst-bio-panel" id="bio-panel">
+                <div class="bio-inner">
+                    <div class="bio-header">
+                        <span class="bio-number" id="bio-num">01</span>
+                        <h3 id="bio-name">Ahmed Gameel Zaid</h3>
+                        <p class="bio-role" id="bio-role">First Team Video Analyst | Al-Yarmouk FC (KSA)</p>
+                    </div>
+                    <div class="bio-content">
+                        <p id="bio-text">Expert in technical and tactical coding, FA certified with extensive experience in Gulf football standards.</p>
+                        <div class="bio-footer">
+                            <a href="analyst-details.html" class="btn-outline-gold">Full Profile</a>
+                            <div class="bio-social">
+                                <a href="#"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
                             </div>
-                            <div class="team-sub-wrap">
-                                <div class="team-sub-content">
-                                    <h3>Abdelrhman Fahmy</h3>
-                                    <span>Performance Analyst First Team</span>
-                                    <p>Dedicated analyst with PFSA and tactical certifications, formerly with AL-Masry.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="team-tag linkedin-icon" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </li>
-
-                    <!-- Analyst 4: Karim Ali -->
-                    <li class="team-each-block">
-                        <a href="analyst-details.html?id=karim-ali" class="team-prof-wrap">
-                            <div class="team-profile">
-                                <img src="assets/analyst4.png" alt="Karim Ali">
-                            </div>
-                            <div class="team-sub-wrap">
-                                <div class="team-sub-content">
-                                    <h3>Karim Ali</h3>
-                                    <span>Performance Analyst – Laviena FC</span>
-                                    <p>Expert in live match and opposition analysis with deep PFSA expertise.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="team-tag linkedin-icon" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </li>
-
-                    <!-- Analyst 5: Abdellatif Reda -->
-                    <li class="team-each-block">
-                        <a href="analyst-details.html?id=abdellatif-reda" class="team-prof-wrap">
-                            <div class="team-profile">
-                                <img src="assets/analyst5.png" alt="Abdellatif Reda">
-                            </div>
-                            <div class="team-sub-wrap">
-                                <div class="team-sub-content">
-                                    <h3>Abdellatif Reda</h3>
-                                    <span>Performance Analyst</span>
-                                    <p>First Team Performance Analyst at Al Ahly SC Women, Barcelona Innovation Hub diploma.</p>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#" class="team-tag linkedin-icon" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
-                    </li>
-                </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Progress Line -->
+                <div class="slider-progress-track">
+                    <div class="slider-progress-bar" id="progress-bar"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -404,9 +388,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- bxSlider JS -->
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <!-- Flickity JS -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="script.js"></script>
 </body>
 

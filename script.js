@@ -89,6 +89,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 4. Analysts Slider Logic
+    const sliderTrack = document.getElementById('analysts-slider');
+    const prevBtn = document.getElementById('prev-analyst');
+    const nextBtn = document.getElementById('next-analyst');
+
+    if (sliderTrack && prevBtn && nextBtn) {
+        const scrollAmount = 412; // card width + gap approx
+
+        nextBtn.addEventListener('click', () => {
+            sliderTrack.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            sliderTrack.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+
+        const toggleButtons = () => {
+            prevBtn.style.opacity = sliderTrack.scrollLeft <= 0 ? '0.3' : '1';
+            nextBtn.style.opacity = (sliderTrack.scrollLeft + sliderTrack.clientWidth >= sliderTrack.scrollWidth - 10) ? '0.3' : '1';
+        };
+
+        sliderTrack.addEventListener('scroll', toggleButtons);
+        window.addEventListener('resize', toggleButtons);
+        toggleButtons();
+    }
+
     // Initial check for elements in viewport on load
     setTimeout(() => {
         animatedElements.forEach(el => {

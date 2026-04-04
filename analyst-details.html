@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyst Details - RAK Tech</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .details-container {
+            padding: 12rem 0;
+            min-height: 80vh;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .details-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .details-content h1 {
+            font-size: 5rem;
+            line-height: 0.9;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        .details-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            margin-bottom: 3rem;
+            display: block;
+        }
+        .details-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+        .certs-list {
+            list-style: none;
+            padding: 0;
+        }
+        .certs-list li {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        .certs-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 4rem;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.2rem;
+        }
+        @media (max-width: 992px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="container nav-content">
+            <a href="index.html#home"><img src="assets/raktech-removebg-preview.png" alt="RAK Tech" class="logo-img"></a>
+            <a href="index.html" class="btn-primary-sm">Back Home</a>
+        </div>
+    </nav>
+
+    <div class="container details-container">
+        <div class="details-grid" id="analyst-view">
+            <!-- Content populated by JS -->
+            <div class="details-sidebar">
+                <img src="" alt="" id="analyst-img" class="details-photo">
+            </div>
+            <div class="details-content">
+                <span class="section-subtitle">EXPERT PROFILE</span>
+                <h1 id="analyst-name">Loading...</h1>
+                <span class="details-role" id="analyst-role"></span>
+                
+                <div class="details-bio">
+                    <p>Professional football analyst with extensive experience in tactical breakdown, opposition scouting, and performance metrics. Committed to delivering elite-level insights for modern football organizations.</p>
+                </div>
+
+                <h3 class="mb-2">Certifications & Expertise</h3>
+                <ul class="certs-list" id="analyst-certs">
+                    <!-- Certs populated here -->
+                </ul>
+
+                <a href="index.html#video-analysis" class="back-btn">← Back to Team</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple data mapping (matches index.html)
+        const analysts = {
+            "1": {
+                name: "Ahmed Gameel Zaid",
+                role: "First Team Video Analyst | Al-Yarmouk FC (KSA)",
+                img: "assets/analyst1.png",
+                certs: [
+                    "FA Certified: Introduction to Scouting & Football Coaching",
+                    "PFSA Certified: Level 1 Talent Identification",
+                    "Performance Analysis Graduate: Griffin Performance Academy (UAE)",
+                    "The FA (England) Introduction to Scouting"
+                ]
+            },
+            "2": {
+                name: "Abdelkader Saleh",
+                role: "Video Analyst",
+                img: "assets/analyst2.png",
+                certs: [
+                    "FC Barcelona's Methodology – Positional Play Concepts (APF)",
+                    "Specialized in Game Analysis",
+                    "Performance Analysis – Johan Cruyff Institute"
+                ]
+            },
+            "3": {
+                name: "Abdelrhman Fahmy",
+                role: "Former AL-Masry Performance Analyst First Team",
+                img: "assets/analyst3.png",
+                certs: [
+                    "PFSA Performance Analysis Levels 1, 2 & 3",
+                    "Beltagy Football Analysis Courses",
+                    "Gary Cureen's Tactical Analysis Certification"
+                ]
+            },
+            "4": {
+                name: "Karim Ali",
+                role: "Performance Analyst – Laviena FC",
+                img: "assets/analyst4.png",
+                certs: [
+                    "Performance Analysis – PFSA",
+                    "Live Match Analysis – PFSA",
+                    "Opposition Analysis – PFSA",
+                    "Scouting Courses – PFSA"
+                ]
+            },
+            "5": {
+                name: "Abdellatif Reda",
+                role: "First Team Performance Analyst | Al Ahly SC Women",
+                img: "assets/analyst5.png",
+                certs: [
+                    "Barcelona Innovation Hub: Professional Diploma",
+                    "PFSA Level 2: Performance & Opposition Analysis",
+                    "PFSA Certified: Introduction to Football Scouting",
+                    "IPSO Certified: Level 1 & 2 – Bias in Scouting"
+                ]
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        const data = analysts[id] || analysts["1"];
+
+        document.getElementById('analyst-name').textContent = data.name;
+        document.getElementById('analyst-role').textContent = data.role;
+        document.getElementById('analyst-img').src = data.img;
+        document.getElementById('analyst-img').alt = data.name;
+
+        const certsContainer = document.getElementById('analyst-certs');
+        data.certs.forEach(cert => {
+            const li = document.createElement('li');
+            li.textContent = cert;
+            certsContainer.appendChild(li);
+        });
+    </script>
+</body>
+</html>

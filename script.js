@@ -89,96 +89,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Elite Video Analysis Slider Logic
-    const carouselElem = document.querySelector('.analysts-carousel');
-    const bioPanel = document.getElementById('bio-panel');
-    const parallaxBg = document.getElementById('slider-parallax');
-    
-    // UI Elements
-    const bioNum = document.getElementById('bio-num');
-    const bioName = document.getElementById('bio-name');
-    const bioRole = document.getElementById('bio-role');
-    const bioText = document.getElementById('bio-text');
-    const progressBar = document.getElementById('progress-bar');
+    // 4. Analysts Slider Logic
+    const sliderTrack = document.getElementById('analysts-slider');
+    const prevBtn = document.getElementById('prev-analyst');
+    const nextBtn = document.getElementById('next-analyst');
 
-    const analystsData = [
-        {
-            num: "01",
-            name: "Ahmed Gameel Zaid",
-            role: "First Team Video Analyst | Al-Yarmouk FC (KSA)",
-            desc: "FA Certified Scout and Performance Analysis Graduate specializing in technical and tactical coding for professional clubs."
-        },
-        {
-            num: "02",
-            name: "Abdelkader Saleh",
-            role: "Video Analyst",
-            desc: "Expert in FC Barcelona's Methodology and Johan Cruyff Institute certified analyst, focused on positional play."
-        },
-        {
-            num: "03",
-            name: "Abdelrhman Fahmy",
-            role: "Performance Analyst First Team",
-            desc: "Dedicated performance analyst with PFSA and tactical certifications, formerly with AL-Masry."
-        },
-        {
-            num: "04",
-            name: "Karim Ali",
-            role: "Performance Analyst – Laviena FC",
-            desc: "Experienced coach and analyst with deep PFSA expertise in live match and opposition analysis."
-        },
-        {
-            num: "05",
-            name: "Abdellatif Reda",
-            role: "First Team Performance Analyst | Al Ahly SC Women",
-            desc: "Data-driven tactician with Barcelona Innovation Hub qualifications, specialized in match and video analysis."
-        }
-    ];
-
-    if (carouselElem && typeof Flickity !== 'undefined') {
-        const flkty = new Flickity(carouselElem, {
-            cellAlign: 'center',
-            contain: true,
-            wrapAround: true,
-            autoPlay: 6000,
-            pauseAutoPlayOnHover: true,
-            prevNextButtons: true,
-            pageDots: false,
-            friction: 0.28,
-            selectedAttraction: 0.02
+    if (sliderTrack && prevBtn && nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const cardWidth = sliderTrack.querySelector('.analyst-card').offsetWidth;
+            sliderTrack.scrollBy({ left: cardWidth + 32, behavior: 'smooth' });
         });
 
-        // Parallax & Progress
-        flkty.on('scroll', (progress) => {
-            // Parallax Shift
-            const moveX = progress * -100;
-            parallaxBg.style.transform = `translateX(${moveX}px)`;
-            
-            // Progress Bar
-            const progWidth = Math.max(0, Math.min(100, progress * 100));
-            progressBar.style.width = `${progWidth}%`;
+        prevBtn.addEventListener('click', () => {
+            const cardWidth = sliderTrack.querySelector('.analyst-card').offsetWidth;
+            sliderTrack.scrollBy({ left: -(cardWidth + 32), behavior: 'smooth' });
         });
-
-        // Sync Bio Panel
-        const updateBio = () => {
-            const index = flkty.selectedIndex;
-            const data = analystsData[index];
-
-            // Fade out
-            bioPanel.style.opacity = '0';
-            
-            setTimeout(() => {
-                bioNum.innerText = data.num;
-                bioName.innerText = data.name;
-                bioRole.innerText = data.role;
-                bioText.innerText = data.desc;
-                
-                // Fade in
-                bioPanel.style.opacity = '1';
-            }, 400);
-        };
-
-        flkty.on('select', updateBio);
-        updateBio(); // Set initial
     }
 
     // Initial check for elements in viewport on load

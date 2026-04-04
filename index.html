@@ -22,6 +22,8 @@
     <meta name="msapplication-TileImage" content="assets/favicon-32.png">
     <!-- Main Styles -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Flickity CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 </head>
 
 <body>
@@ -209,47 +211,33 @@
             <h2 class="section-title">Video Analysis Excellence</h2>
         </div>
         
-        <div class="site-slider">
-            <div class="analysts-slider-container">
-                <button class="slider-nav prev" id="prev-analyst">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M15 18l-6-6 6-6" />
-                    </svg>
-                </button>
-                
-                <div class="analysts-slider-track" id="analysts-slider">
-                    <div class="analyst-item active" data-index="0">
-                        <div class="analyst-photo-wrapper">
-                            <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid" class="analyst-photo">
-                        </div>
-                    </div>
-                    <div class="analyst-item" data-index="1">
-                        <div class="analyst-photo-wrapper">
-                            <img src="assets/analyst2.png" alt="Abdelkader Saleh" class="analyst-photo">
-                        </div>
-                    </div>
-                    <div class="analyst-item" data-index="2">
-                        <div class="analyst-photo-wrapper">
-                            <img src="assets/analyst3.png" alt="Abdelrhman Fahmy" class="analyst-photo">
-                        </div>
-                    </div>
-                    <div class="analyst-item" data-index="3">
-                        <div class="analyst-photo-wrapper">
-                            <img src="assets/analyst4.png" alt="Karim Ali" class="analyst-photo">
-                        </div>
-                    </div>
-                    <div class="analyst-item" data-index="4">
-                        <div class="analyst-photo-wrapper">
-                            <img src="assets/analyst5.png" alt="Abdellatif Reda" class="analyst-photo">
-                        </div>
+        <div class="site-slider-v2">
+            <div class="analysts-main-carousel" id="analysts-carousel" data-flickity='{ "wrapAround": true, "prevNextButtons": true, "pageDots": false, "cellAlign": "center", "autoPlay": 4000, "pauseAutoPlayOnHover": true }'>
+                <div class="carousel-cell" data-index="0">
+                    <div class="analyst-photo-wrapper">
+                        <img src="assets/analyst1.png" alt="Ahmed Gameel Zaid" class="analyst-photo">
                     </div>
                 </div>
-
-                <button class="slider-nav next" id="next-analyst">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M9 18l6-6-6-6" />
-                    </svg>
-                </button>
+                <div class="carousel-cell" data-index="1">
+                    <div class="analyst-photo-wrapper">
+                        <img src="assets/analyst2.png" alt="Abdelkader Saleh" class="analyst-photo">
+                    </div>
+                </div>
+                <div class="carousel-cell" data-index="2">
+                    <div class="analyst-photo-wrapper">
+                        <img src="assets/analyst3.png" alt="Abdelrhman Fahmy" class="analyst-photo">
+                    </div>
+                </div>
+                <div class="carousel-cell" data-index="3">
+                    <div class="analyst-photo-wrapper">
+                        <img src="assets/analyst4.png" alt="Karim Ali" class="analyst-photo">
+                    </div>
+                </div>
+                <div class="carousel-cell" data-index="4">
+                    <div class="analyst-photo-wrapper">
+                        <img src="assets/analyst5.png" alt="Abdellatif Reda" class="analyst-photo">
+                    </div>
+                </div>
             </div>
 
             <!-- Fixed Info Panel -->
@@ -367,6 +355,8 @@
     </footer>
 
     <!-- Scripts -->
+    <!-- Flickity JS -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="script.js"></script>
 </body>
 

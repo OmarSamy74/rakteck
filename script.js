@@ -89,11 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Centerpiece Analysts Slider Logic
-    const sliderTrack = document.getElementById('analysts-slider');
-    const prevBtn = document.getElementById('prev-analyst');
-    const nextBtn = document.getElementById('next-analyst');
-    const analystItems = document.querySelectorAll('.analyst-item');
+    // 4. Flickity Analysts Slider Logic
+    const carouselElem = document.querySelector('.analysts-main-carousel');
     const detailsPanel = document.getElementById('analyst-details');
     const displayName = document.getElementById('display-name');
     const displayRole = document.getElementById('display-role');
@@ -127,33 +124,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    if (sliderTrack && analystItems.length > 0) {
-        
-        const updateActiveItem = () => {
-            const trackRect = sliderTrack.getBoundingClientRect();
-            const trackCenter = trackRect.left + trackRect.width / 2;
+    if (carouselElem) {
+        // Flickity is already initialized via HTML data-flickity, 
+        // but we need to access the instance to listen for events.
+        // Wait until Flickity is loaded if using CDN
+        const checkFlickity = setInterval(() => {
+            if (typeof Flickity !== 'undefined') {
+                clearInterval(checkFlickity);
+                initFlickitySync();
+            }
+        }, 100);
 
-            let closestItem = null;
-            let minDistance = Infinity;
-
-            analystItems.forEach((item, index) => {
-                const itemRect = item.getBoundingClientRect();
-                const itemCenter = itemRect.left + itemRect.width / 2;
-                const distance = Math.abs(trackCenter - itemCenter);
-
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    closestItem = item;
-                }
+        function initFlickitySync() {
+            const flkty = new Flickity(carouselElem, {
+                wrapAround: true,
+                prevNextButtons: true,
+                pageDots: false,
+                cellAlign: 'center',
+                autoPlay: 4000,
+                pauseAutoPlayOnHover: true
             });
 
-            if (closestItem) {
-                const index = parseInt(closestItem.getAttribute('data-index'));
+            const updateDisplay = () => {
+                const index = flkty.selectedIndex;
                 
-                // Update Classes
-                analystItems.forEach(item => item.classList.remove('active'));
-                closestItem.classList.add('active');
-
                 // Update Info Panel with simple fade
                 if (displayName.innerText !== analystsData[index].name) {
                     detailsPanel.style.opacity = '0';
@@ -164,32 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         detailsPanel.style.opacity = '1';
                     }, 300);
                 }
-            }
-        };
+            };
 
-        // Navigation Buttons
-        nextBtn.addEventListener('click', () => {
-            const itemWidth = analystItems[0].offsetWidth + 64; // base + gap
-            sliderTrack.scrollBy({ left: itemWidth, behavior: 'smooth' });
-        });
-
-        prevBtn.addEventListener('click', () => {
-            const itemWidth = analystItems[0].offsetWidth + 64;
-            sliderTrack.scrollBy({ left: -itemWidth, behavior: 'smooth' });
-        });
-
-        // Click on item to center it
-        analystItems.forEach(item => {
-            item.addEventListener('click', () => {
-                item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            });
-        });
-
-        sliderTrack.addEventListener('scroll', updateActiveItem);
-        window.addEventListener('resize', updateActiveItem);
-        
-        // Initial setup
-        updateActiveItem();
+            flkty.on('select', updateDisplay);
+            updateDisplay(); // Initial load
+        }
     }
 
     // Initial check for elements in viewport on load

@@ -89,80 +89,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Flickity Analysts Slider Logic
-    const carouselElem = document.querySelector('.analysts-main-carousel');
-    const detailsPanel = document.getElementById('analyst-details');
-    const displayName = document.getElementById('display-name');
-    const displayRole = document.getElementById('display-role');
-    const displayDesc = document.getElementById('display-desc');
-
-    const analystsData = [
-        {
-            name: "Ahmed Gameel Zaid",
-            role: "First Team Video Analyst | Al-Yarmouk FC (KSA)",
-            desc: "FA Certified Scout and Performance Analysis Graduate specializing in technical and tactical coding for professional clubs."
-        },
-        {
-            name: "Abdelkader Saleh",
-            role: "Video Analyst",
-            desc: "Expert in FC Barcelona's Methodology and Johan Cruyff Institute certified analyst, focused on positional play."
-        },
-        {
-            name: "Abdelrhman Fahmy",
-            role: "Performance Analyst First Team",
-            desc: "Dedicated performance analyst with PFSA and tactical certifications, formerly with AL-Masry."
-        },
-        {
-            name: "Karim Ali",
-            role: "Performance Analyst – Laviena FC",
-            desc: "Experienced coach and analyst with deep PFSA expertise in live match and opposition analysis."
-        },
-        {
-            name: "Abdellatif Reda",
-            role: "First Team Performance Analyst | Al Ahly SC Women",
-            desc: "Data-driven tactician with Barcelona Innovation Hub qualifications, specialized in match and video analysis."
-        }
-    ];
-
-    if (carouselElem) {
-        // Flickity is already initialized via HTML data-flickity, 
-        // but we need to access the instance to listen for events.
-        // Wait until Flickity is loaded if using CDN
-        const checkFlickity = setInterval(() => {
-            if (typeof Flickity !== 'undefined') {
-                clearInterval(checkFlickity);
-                initFlickitySync();
-            }
-        }, 100);
-
-        function initFlickitySync() {
-            const flkty = new Flickity(carouselElem, {
-                wrapAround: true,
-                prevNextButtons: true,
-                pageDots: false,
-                cellAlign: 'center',
-                autoPlay: 4000,
-                pauseAutoPlayOnHover: true
-            });
-
-            const updateDisplay = () => {
-                const index = flkty.selectedIndex;
-                
-                // Update Info Panel with simple fade
-                if (displayName.innerText !== analystsData[index].name) {
-                    detailsPanel.style.opacity = '0';
-                    setTimeout(() => {
-                        displayName.innerText = analystsData[index].name;
-                        displayRole.innerText = analystsData[index].role;
-                        displayDesc.innerText = analystsData[index].desc;
-                        detailsPanel.style.opacity = '1';
-                    }, 300);
+    // 4. Video Analysis - Team Carousel (bxSlider)
+    if ($('.team-carousel').length) {
+        $('.team-carousel').bxSlider({
+            auto: true,
+            pause: 5000,
+            speed: 800,
+            pager: true,
+            controls: true,
+            minSlides: 1,
+            maxSlides: 4,
+            moveSlides: 1,
+            slideWidth: 350,
+            slideMargin: 20,
+            infiniteLoop: true,
+            hideControlOnEnd: true,
+            touchEnabled: true,
+            preventDefaultSwipeX: true,
+            responsive: [
+                {
+                    breakpoint: 480,
+                    settings: {
+                        maxSlides: 1,
+                        slideWidth: 300
+                    }
+                },
+                {
+                    breakpoint: 768,
+                    settings: {
+                        maxSlides: 2,
+                        slideWidth: 300
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        maxSlides: 3,
+                        slideWidth: 320
+                    }
                 }
-            };
-
-            flkty.on('select', updateDisplay);
-            updateDisplay(); // Initial load
-        }
+            ]
+        });
     }
 
     // Initial check for elements in viewport on load
